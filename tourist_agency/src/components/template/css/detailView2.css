@@ -1,0 +1,90 @@
+/* components */
+
+.container {
+    background-color: #F5F5F5;
+}
+
+/* cells */
+
+.introduction {
+    width: 30%;
+    text-align: center;
+}
+
+.generaldetails {
+    width: 35%;
+}
+
+.contactdetails {
+    width: 35%;
+}
+
+/* text */
+
+.title {
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 70px;
+    margin-top: 0%;
+}
+
+.generaldesc {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.recordtitle {
+    font-style: initial;
+    width: 45%;
+    margin-left: 0%;
+}
+
+.availability {
+    font-size: 27pt;
+    text-align: center;
+}
+
+#yes {
+    color: lime;
+}
+
+#no {
+    color: red;
+}
+
+.subtitle {
+    margin-top: 1000pt;
+    margin-left: 5%;
+}
+
+/* images */
+
+.imagedesc {
+    width: 80%;
+    height: 300px;  
+}
+
+/* table */
+
+.alldetails {
+    width: 100%;
+}
+
+.recordDetailsTab {
+    width: 90%;
+    margin: auto;
+    text-align: left;
+}
+
+/* buttons */
+
+.bookBtn {
+    width: 70%;
+    font-size: 20pt;
+    color: seashell;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    background-color: seagreen;
+}
