@@ -1,0 +1,64 @@
+/* Containers */
+
+.action_button_container {
+    width: 100%;
+    margin: auto;
+    margin-top: 15px;
+    border: black 1px;
+    height: 200px;
+}
+
+.component_actions {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: 15px;
+    color: black;
+    float: left;
+}
+
+.Title_container {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+/* text */
+
+.action_button_text{
+    width: 55%;
+    height: 200px;
+    font-size: 60px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;    
+    color: black;
+    float: left;
+    padding: 0, 0, 0, 0;
+    
+}
+
+.componentTitle_text {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: black;
+    font-size: 100px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* images */
+
+.action_button_img {
+    width: 45%;
+    height: 175px;
+    border: black 1px;
+    float: left;
+}
+
+.componentTitle_image {
+    width : 100%;
+    height: 250px;
+}
+
+
+
