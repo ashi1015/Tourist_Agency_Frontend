@@ -1,0 +1,61 @@
+/* containers */
+
+.container {
+    width: 100%;
+}
+
+/* forms */
+
+.adminform {
+    width: 70%;
+    border: black 1px solid;
+    margin: auto;
+}
+
+/* tables */
+
+table tr td {
+    border: 0px;
+}
+
+.formtable {
+    width: 100%;
+    margin: auto;
+}
+
+.fieldname {
+    width: 40%;
+}
+
+.inputfields {
+    width: 60%;
+}
+
+/* input */
+
+.inputvalues {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+
+/* buttons */
+
+.submitBtn {
+    width: 40%;
+    margin: auto;
+    
+}
+
+/* text */
+
+.formtitle {
+    font-size: 32pt;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: auto;
+}
+
+.labeltext {
+    margin-left: 10pt;
+    font-size: 14pt;
+}
