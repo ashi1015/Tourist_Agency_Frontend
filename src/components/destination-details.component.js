@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
+import DestinationDataService from "../services/destination.service";
 
 export default class DestinationsDetailsComponent extends Component {
   constructor(props) {
@@ -62,7 +63,19 @@ export default class DestinationsDetailsComponent extends Component {
     const { searchTitle, page, pageSize } = this.state;
     const params = this.getRequestParams(searchTitle, page, pageSize);
 
-      {/* ********************************************* */}
+    DestinationDataService.getAll(params)
+        .then((response) => {
+          const { destinations, totalPages } = response.data;
+
+          this.setState({
+            destinations: destinations,
+            count: totalPages,
+          });
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
   }
 
@@ -82,9 +95,14 @@ export default class DestinationsDetailsComponent extends Component {
   }
 
   removeAllDestinations() {
-
-      {/* ********************************************* */}
-
+    DestinationDataService.deleteAll()
+        .then((response) => {
+          console.log(response.data);
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
   }
 
   handlePageChange(event, value) {
