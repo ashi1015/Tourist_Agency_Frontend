@@ -92,15 +92,18 @@
     background: #b4b4b4;
 }
 
+.tableContainer{
+}
+
 table{
     border-spacing: 0px;
     border-bottom: 1px solid lightgray;
-    width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .table td, .table th{
     padding: .75em;
+    width: 500px;
     vertical-align: top;
     text-align: center;
     border-top: 1px solid lightgray;

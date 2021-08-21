@@ -190,6 +190,7 @@ export default class UpdateDestinationComponent extends Component {
     )
         .then(response => {
           console.log(response.data);
+          this.props.history.push('/destinationList')
           this.setState({
             message: "The destination was updated successfully!"
           });
@@ -204,7 +205,7 @@ export default class UpdateDestinationComponent extends Component {
     DestinationDataService.delete(this.state.currentDestination.id)
         .then(response => {
           console.log(response.data);
-          this.props.history.push('/destinations')
+          this.props.history.push('/destinationList')
         })
         .catch(e => {
           console.log(e);

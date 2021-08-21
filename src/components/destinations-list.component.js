@@ -113,17 +113,6 @@ export default class DestinationsListComponent extends Component {
             });
     }
 
-    deleteDestination() {
-        DestinationDataService.delete(this.state.currentDestination.id)
-            .then(response => {
-                console.log(response.data);
-                this.props.history.push('/destinations')
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-
     handlePageChange(event, value) {
         this.setState(
             {
@@ -178,7 +167,7 @@ export default class DestinationsListComponent extends Component {
               <input
                   type="text"
                   className="form-control"
-                  placeholder="Search by title"
+                  placeholder="Search by destination name"
                   value={searchTitle}
                   onChange={this.onChangeSearchTitle} />
               <div className="input-group-append">
@@ -194,7 +183,7 @@ export default class DestinationsListComponent extends Component {
 
 
           </div>
-          <div className="col-md-12">
+          <div classname = "tableContainer">
 
             <br/>
             <table className="table">
@@ -206,7 +195,7 @@ export default class DestinationsListComponent extends Component {
                 <th>Entrance Fees</th>
                 <th>Contact Number</th>
                 <th>Identity Card / Visa Requirement</th>
-                <th>Action</th>
+                <th style={{width: "1000px"}}>Action</th>
               </tr>
               </thead>
               <tbody>
@@ -222,17 +211,12 @@ export default class DestinationsListComponent extends Component {
                     <td>{destination.visaRequirement}</td>
                     {/*<td>{destination.published ? "Published" : "Pending"}</td>*/}
                     <td>
-                      <Link to={"/destinations/" + destination.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-success btn-sm"> Update </Link>
-                      <button className= { "btn btn-danger btn-sm" +
-                      (index === currentIndex ? "active" : "")
-                      }
+                      <Link to={"/destinations/" + destination.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-success btn-sm"> Edit </Link>
+
+                        <button className= "btn btn-info btn-sm"
                               style={{fontWeight: "bold", marginLeft: "10px", fontSize: "13px"}}
-                              onClick={() => this.setCurrentDestination(destination, index)}
-                              onClick={() => this.setActiveDestination(destination, index)}
-                              onClick={currentDestination=destination.id}
-                              onClick={this.deleteDestination}
                               key={index}>
-                        Delete</button>
+                        Add Image</button>
                     </td>
                   </tr>
               ))}
@@ -243,9 +227,10 @@ export default class DestinationsListComponent extends Component {
 
           <br/>
 
-          <div className="col-md-5">
-            {"Items per Page: "}
-            <select className="select" onChange={this.handlePageSizeChange} value={pageSize}>
+          <div className="row" style ={{marginLeft: "220px"}}>
+            {"Items per Page : "}
+            <select className="select" style ={{marginLeft: "50px", marginTop: "-4px"}}
+                 onChange={this.handlePageSizeChange} value={pageSize}>
               {this.pageSizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
@@ -254,6 +239,7 @@ export default class DestinationsListComponent extends Component {
             </select>
 
             <Pagination
+                style ={{marginLeft: "200px", marginTop: "-11px"}}
                 className="pagination"
                 count={count}
                 page={page}

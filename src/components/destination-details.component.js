@@ -159,7 +159,7 @@ export default class DestinationsDetailsComponent extends Component {
             <input
                 type="text"
                 className="form-control"
-                placeholder="Search by title"
+                placeholder="Search by destination name"
                 value={searchTitle}
                 onChange={this.onChangeSearchTitle} />
             <div className="input-group-append">
@@ -195,12 +195,14 @@ export default class DestinationsDetailsComponent extends Component {
 
         </div>
 
-        <div className="col-md-12">
-
-          <div className="startP">
+        <div className="row" style ={{marginLeft: "250px"}}>
 
             {"Items per Page: "}
-            <select className="select" onChange={this.handlePageSizeChange} value={pageSize}>
+            <select
+                style ={{marginLeft: "50px", marginTop: "-4px"}}
+                className="select"
+                onChange={this.handlePageSizeChange}
+                value={pageSize}>
               {this.pageSizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
@@ -217,8 +219,8 @@ export default class DestinationsDetailsComponent extends Component {
                 variant="outlined"
                 shape="rounded"
                 onChange={this.handlePageChange}
+                style ={{marginLeft: "200px", marginTop: "-11px"}}
             />
-          </div>
         </div>
 
         <br/>
@@ -271,13 +273,13 @@ export default class DestinationsDetailsComponent extends Component {
                     to={"/destinations/" + currentDestination.id}
                     className="submitBtnGreen" style={{width: "250px", textAlign: "center"}}>
                   Edit
-                </Link> <br/><br/>
+                </Link> <br/>
               </div>
 
           ) : (
               <div>
                 <br />
-                <p>Click on a destination to view more details</p>
+                <p>Click on a destination to view more details</p><br/><br/>
               </div>
           )}
         </div>

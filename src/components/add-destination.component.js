@@ -128,10 +128,13 @@ export default class AddDestinationComponent extends Component {
             submitted: true
           });
           console.log(response.data);
+          this.props.history.push('/destinationList')
         })
         .catch(e => {
           console.log(e);
         });
+    alert("Destination Added Successfully!");
+
   }
 
   newDestination() {
