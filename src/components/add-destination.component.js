@@ -109,6 +109,28 @@ export default class AddDestinationComponent extends Component {
       visaRequirement: this.state.visaRequirement
     };
 
+    DestinationDataService.create(data)
+        .then(response => {
+          this.setState({
+            id: response.data.id,
+            title: response.data.title,
+            description: response.data.description,
+            city: response.data.city,
+            coordinates: response.data.coordinates,
+            area: response.data.area,
+            altitude: response.data.altitude,
+            temperature: response.data.temperature,
+            contact: response.data.contact,
+            entranceFees: response.data.entranceFees,
+            visaRequirement: response.data.visaRequirement,
+            published: response.data.published,
+            submitted: true
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
   }
 
   newDestination() {
