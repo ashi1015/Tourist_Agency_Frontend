@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Tooltip} from "@material-ui/core";
+import DestinationDataService from "../services/destination.service";
 
 export default class UpdateDestinationComponent extends Component {
   constructor(props) {
@@ -146,7 +147,16 @@ export default class UpdateDestinationComponent extends Component {
 
 
   getDestination(id) {
-    {/* ********************************************* */}
+    DestinationDataService.get(id)
+        .then(response => {
+          this.setState({
+            currentDestination: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
   }
 
   updatePublished(status) {
@@ -157,18 +167,49 @@ export default class UpdateDestinationComponent extends Component {
       published: status
     };
 
-    {/* ********************************************* */}
+    DestinationDataService.update(this.state.currentDestination.id, data)
+        .then(response => {
+          this.setState(prevState => ({
+            currentDestination: {
+              ...prevState.currentDestination,
+              published: status
+            }
+          }));
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
 
   }
 
   updateDestination() {
-
-    {/* ********************************************* */}
-
+    DestinationDataService.update(
+        this.state.currentDestination.id,
+        this.state.currentDestination
+    )
+        .then(response => {
+          console.log(response.data);
+          this.setState({
+            message: "The destination was updated successfully!"
+          });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    alert("Destination Updated Successfully!");
   }
 
   deleteDestination() {
-    {/* ********************************************* */}
+    DestinationDataService.delete(this.state.currentDestination.id)
+        .then(response => {
+          console.log(response.data);
+          this.props.history.push('/destinations')
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    alert("Destination Deleted Successfully!");
   }
 
   render() {
