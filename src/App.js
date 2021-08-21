@@ -69,7 +69,7 @@ class App extends Component {
                             <Route path="/contactUs" component={ContactUsComponent} />
                             <Route path="/destinations/:id" component={UpdateDestinationComponent} />
                             <Route path="/tourists" component={DestinationCardViewComponent} />
-                            <Route path="/individualdestinationdetailspage" component={IndividualDestinationDetailsComponent} />
+                            <Route path="/individualdestinationdetailspage/:id" component={IndividualDestinationDetailsComponent} />
                         </Switch>
                     </div>
                 </div>

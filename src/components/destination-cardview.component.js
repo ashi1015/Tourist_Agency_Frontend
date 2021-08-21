@@ -200,7 +200,7 @@ export default class DestinationCardViewComponent extends Component {
                                             {destination.title}
                                         </h6>
                                         <p >ssss{destination.description}</p>
-                                        <Link to={"/destinations/" + destination.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-primary" style={{marginLeft: "25%"}}> More Details </Link>
+                                        <Link to={"/individualdestinationdetailspage/" + destination.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-primary" style={{marginLeft: "25%"}}> More Details </Link>
 
                                     </div>
                                 </div>

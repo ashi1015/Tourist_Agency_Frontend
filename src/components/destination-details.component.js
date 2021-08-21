@@ -228,45 +228,45 @@ export default class DestinationsDetailsComponent extends Component {
           {currentDestination ? (
               <div>
                 <div>
-                  <label><strong>Title :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.title}</label>
-                </div>
+                  <label><strong>Destination Name :</strong></label>{" "}<br/>
+                  <label>{currentDestination.title}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Description :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.description}</label>
-                </div>
+                  <label><strong>Description :</strong></label>{" "}<br/>
+                  <label>{currentDestination.description}</label>
+                </div><br/>
                 <div>
-                  <label><strong>City :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.city}</label>
+                  <label><strong>City :</strong></label>{" "}<br/>
+                  <label>{currentDestination.city}</label>
                   {/*{currentDestination.published ? "Published" : "Pending"}*/}
-                </div>
+                </div><br/>
                 <div>
-                  <label><strong>Coordinates :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.coordinates}</label>
-                </div>
+                  <label><strong>Coordinates :</strong></label>{" "}<br/>
+                  <label>{currentDestination.coordinates}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Area (ha) :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.area}</label>
-                </div>
+                  <label><strong>Area (ha) :</strong></label>{" "}<br/>
+                  <label>{currentDestination.area}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Altitude :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.altitude}</label>
-                </div>
+                  <label><strong>Altitude :</strong></label>{" "}<br/>
+                  <label>{currentDestination.altitude}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Temperature :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.temperature}</label>
-                </div>
+                  <label><strong>Temperature :</strong></label>{" "}<br/>
+                  <label>{currentDestination.temperature}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Contact :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.contact}</label>
-                </div>
+                  <label><strong>Contact Number :</strong></label>{" "}<br/>
+                  <label>{currentDestination.contact}</label>
+                </div><br/>
                 <div>
-                  <label><strong>Entrance Fees :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.entranceFees}</label>
-                </div>
+                  <label><strong>Entrance Fees :</strong></label>{" "}<br/>
+                  <label>{currentDestination.entranceFees}</label>
+                </div><br/>
                 <div>
-                  <label><strong>ID / Visa Requirement :</strong></label>{" "}
-                  <label style={{float: "right", marginRight: "700px"}}>{currentDestination.visaRequirement}</label>
+                  <label><strong>ID / Visa Requirement :</strong></label>{" "}<br/>
+                  <label>{currentDestination.visaRequirement}</label>
                 </div>
                 <Link
                     type="button"

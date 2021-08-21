@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import destination1 from '../images/destination1.jpg'
+import add from '../images/add.jpg'
+import listDestinations from '../images/listDestinations.jpg'
+import details from '../images/details.jpg'
+import report from '../images/report.png'
 
 export default class DestinationDashboardComponent extends Component {
     constructor(props) {
@@ -25,7 +28,7 @@ export default class DestinationDashboardComponent extends Component {
                         <div className="card text-white bg-info mb-3" style={{width: "18rem"}}>
                             <div className="card-body">
                                 <Link to={"/add"}>
-                                    <img className="card-img-top" src={destination1} alt="Card image cap" />
+                                    <img className="card-img-top" src={add} style={{height: "140px"}} alt="Card image cap" />
                                     <p className="card-text">Add Destinations</p>
                                 </Link><br/>
                             </div>
@@ -35,7 +38,7 @@ export default class DestinationDashboardComponent extends Component {
                         <div className="card text-white bg-danger mb-3" style={{width: "18rem"}}>
                             <div className="card-body">
                                 <Link to={"/destinationList"}>
-                                    <img className="card-img-top" src={destination1} alt="Card image cap" />
+                                    <img className="card-img-top" style={{height: "140px"}} src={listDestinations} alt="Card image cap" />
                                     <p className="card-text">View & Update Destinations</p>
                                 </Link><br/>
                             </div>
@@ -45,7 +48,7 @@ export default class DestinationDashboardComponent extends Component {
                         <div className="card text-white bg-success mb-3" style={{width: "18rem"}} >
                             <div className="card-body">
                                 <Link to={"/individualDestinationDetails"}>
-                                    <img className="card-img-top" src={destination1} alt="Card image cap" />
+                                    <img className="card-img-top" style={{height: "140px"}} src={details} alt="Card image cap" />
                                     <p className="card-text">View Destination Details</p>
                                 </Link><br/>
                             </div>
@@ -55,7 +58,7 @@ export default class DestinationDashboardComponent extends Component {
                         <div className="card text-white bg-warning mb-3" style={{width: "18rem"}}>
                             <div className="card-body">
                                 <Link to={"/add"}>
-                                    <img className="card-img-top" src={destination1} alt="Card image cap" />
+                                    <img className="card-img-top" src={report} style={{height: "140px"}} alt="Card image cap" />
                                     <p className="card-text">Generate Reports</p>
                                 </Link><br/>
                             </div>
