@@ -1,0 +1,74 @@
+.submitBtn{
+    display: flex;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 6px;
+    color: white;
+    padding: 10px 60px;
+    background: #107da7;
+    box-shadow: rgba(0,0,0,0.3) 0px 19px 38px,
+    rgba(0,0,0,0.22) 0px 15px 12px;
+    margin: auto;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-bottom: 15px;
+    
+  }
+
+  
+  .error_IT19177106{
+    color: red;
+    padding-left: 50px;
+  }
+
+  .form{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: auto;
+    font-size: 20px;
+    border: 2px;
+    border-color: black;
+    background-color: rgb(250, 246, 243);
+    width: 700px;
+    padding: 10px 60px;
+  
+    
+  }
+
+  .adminHeading{
+    padding-top: 60px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 4px #b4b4b4;
+    color: #00008c;
+    
+  }
+
+  .submit-form {
+    max-width: 50%;
+    margin: auto;
+  }
+
+  .form-label{
+    margin-left: 0%;
+  }
+
+  
+  .select_it19177106{
+    height:35px;
+    font-size: 15px;
+    outline: none;
+    /* width: 70%; */
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+    padding-left: 4px;
+    background-color: rgb(230, 229, 248);
+  }
+ 
+  
+
