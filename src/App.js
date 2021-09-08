@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import NavBar from './components/navBar/navBar';
 
 import AddTutorial from "./components/add-tutorial.component";
 import Tutorial from "./components/tutorial.component";
@@ -15,11 +16,22 @@ import test from './components/Hotels/test';
 import Galadari from "./components/Individual Hotels/Hotel.Galadari";
 import home from './components/Home/home';
 
+----IT19177106----
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CreateExpenses from './components/Expenses/CreateExpenses';
+import CreateTourists from './components/Tourists/CreateTourists';
+import Login from './components/Login/Login';
+import ViewTourists from './components/Tourists/ViewTouristsProfile';
+import Expenses from './components/Expenses/ViewExpenses';
+
+
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
+          <NavBar/>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <a href="/tutorials" className="navbar-brand">
               Travel Agency
@@ -58,6 +70,7 @@ class App extends Component {
             </div>
           </nav>
           <div className="container mt-3">
+            <section>
             <Switch>
             <Route path="/Galadari" component={Galadari} />
               <Route exact path="/hotels" component={HotelMain} />
@@ -70,7 +83,16 @@ class App extends Component {
               <Route path="/contactUs" component={ContactUsComponent} />
               <Route path="/" component={home} />
               <Route path="/t" component={test} />
+               
+              <Route path="/create-tourist" component={CreateTourists}/>
+              <Route path="/create-expenses" component={CreateExpenses}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/Profile" component={ViewTourists}/>
+              <Route path="/expenses" component={Expenses}/>
+                
+                
             </Switch>
+           </section>
           </div>
         </div>
       </Router>
