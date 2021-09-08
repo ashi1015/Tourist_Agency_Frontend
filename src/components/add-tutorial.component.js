@@ -24,6 +24,7 @@ export default class AddTutorial extends Component {
     this.onChangeCuisine3 = this.onChangeCuisine3.bind(this);
     this.saveTutorial = this.saveTutorial.bind(this);
     this.newTutorial = this.newTutorial.bind(this);
+    this.demo = this.demo.bind(this);
 
     this.state = {
       id: null,
@@ -47,7 +48,6 @@ export default class AddTutorial extends Component {
       published: false,
       submitted: false,
 
-    
     };
   }
 
@@ -169,9 +169,15 @@ export default class AddTutorial extends Component {
       cuisine2: this.state.cuisine2,
       cuisine3: this.state.cuisine3
     };
-
+    
     TutorialDataService.create(data)
       .then(response => {
+        
+        // var hasErrors = this.validation(this.state);
+        // if (hasErrors) {
+        //     return;
+        // }
+        
         this.setState({
           id: response.data.id,
           hotelName: response.data.hotelName,
@@ -194,12 +200,50 @@ export default class AddTutorial extends Component {
           published: response.data.published,
           submitted: true
         });
+
         console.log(response.data);
+        alert('Hotel Added!');
       })
       .catch(e => {
         console.log(e);
+        alert("Please Enter all the Fields of the Form ");
       });
   }
+
+
+  validation = (values) => {
+
+    var errors = {};
+
+    if (!values.hotelName) {
+        errors.hotelName = "Hotel Name is required!"
+    }
+    if (!values.email) {
+        errors.email = "Email is required!"
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errors.email = "Email is invalid."
+    }
+    if (!values.contactNo) {
+        errors.contactNo = "Phone number is required."
+    } else if (values.contactNo.length != 10 || !/^[0-9]+$/.test(values.contactNo)) {
+        errors.contactNo = "Invalid Mobile Number!"
+    }
+    if (!values.address) {
+        errors.address = "Address is required."
+    }
+    if (!values.date_of_registration) {
+        errors.date_of_registration = "Date is required."
+    }
+    if (!values.priceRange) {
+        errors.priceRange = "Price Range is required."
+    }
+    if (!values.description) {
+      errors.description = "Description is required."
+  }
+   
+    this.setState({ errors: errors })
+    return Object.keys(errors).length > 0;
+};
 
   newTutorial() {
     this.setState({
@@ -227,15 +271,40 @@ export default class AddTutorial extends Component {
     });
   }
 
+  demo() {
+    this.setState({
+      id: null,
+      hotelName: "Vinrich Lake Resort",
+      description: "Have you been feeling the need of escaping from your hectic lifestyle and find a perfect hideaway to spend your family with? A place where you won’t be disturbed by the polluted and busy towns and inhale the purest air and enjoy the tranquillity of a place where you can enjoy nature. Or is it to celebrate your dream day which you need to celebrate in tranquillity. You need not think that there are only outstation destinations to relax thus. Vinrich Lake Resort is only 22 kilometres away from Colombo and 5 kilometres away from Piliyandala. Right next to the harmonious wobble in the waters of the Bolgoda Lake, this is the perfect gateway that you needed all this time.",
+      address : "No.18/3, Duwawatta Road, Madapatha, Piliyandala, Sri Lanka",
+      date_of_registration : "24.08.2021",
+      registrationFee : "Rs. 2000.00",
+      priceRange : "Rs. 750.00 - Rs. 2500.00",
+      contactNo : "+94 112603800-04",
+      email : "vinrichlakeresort@sltnet.lk",
+      amenity1: "Free Breakfast",
+      amenity2: "Swimming Pool",
+      amenity3: "Spa",
+      feature1: "Air conditioning",
+      feature2: "Minibar",
+      feature3: "Bath robes",
+      cuisine1: "Special Chicken Fried Rice",
+      cuisine2: "Customized pizza",
+      cuisine3: "BBQ",
+      // published: false,
+      // submitted: false
+    });
+  }
+
   render() {
     return (
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
-            <h4>You submitted successfully!</h4>
+            {/* <h4>You submitted successfully!</h4>
             <button className="btn btn-success" onClick={this.newTutorial}>
               Add
-            </button>
+            </button> */}
           </div>
         ) : (
           <div>
@@ -350,7 +419,7 @@ export default class AddTutorial extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="entranceFees">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                   type="email"
                   className="form-control"
@@ -365,7 +434,7 @@ export default class AddTutorial extends Component {
 
             <br></br>
             <div className="form-group">
-              <label><strong>Top 3 Amenities</strong></label>
+              <label style={{marginLeft: "40%"}}><strong>Top 3 Amenities</strong></label>
               <br></br>
               <label htmlFor="amenity1">Amenity 1</label>
               <input
@@ -408,7 +477,7 @@ export default class AddTutorial extends Component {
 
             <br></br>
             <div className="form-group">
-              <label><strong>Top 3 Room Features</strong></label>
+              <label  style={{marginLeft: "40%"}}><strong>Top 3 Room Features</strong></label>
               <br></br>
               <label htmlFor="feature1">Feature 1</label>
               <input
@@ -452,7 +521,7 @@ export default class AddTutorial extends Component {
 
             <br></br>
             <div className="form-group">
-              <label><strong>Most Popular Cuisines</strong></label>
+              <label  style={{marginLeft: "40%"}}><strong>Most Popular Cuisines</strong></label>
               <br></br>
               <label htmlFor="feature1">Cuisine 1</label>
               <input
@@ -496,6 +565,10 @@ export default class AddTutorial extends Component {
 
             <button onClick={this.saveTutorial} className="submitBtn">
               Add Hotel
+            </button>
+
+            <button onClick={this.demo} className="submitBtn">
+              Demo
             </button>
           </div>
         )}

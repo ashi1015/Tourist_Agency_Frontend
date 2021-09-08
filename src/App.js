@@ -13,6 +13,7 @@ import ContactUsComponent from "./components/contact-us.component";
 import HotelMain from './components/Hotels/HotelMainPage';
 import test from './components/Hotels/test';
 import Galadari from "./components/Individual Hotels/Hotel.Galadari";
+import home from './components/Home/home';
 
 class App extends Component {
   render() {
@@ -56,7 +57,6 @@ class App extends Component {
               </li>
             </div>
           </nav>
-
           <div className="container mt-3">
             <Switch>
             <Route path="/Galadari" component={Galadari} />
@@ -68,8 +68,8 @@ class App extends Component {
               <Route path="/tourists" component={TouristView} />
               <Route path="/HotelDashboard" component={DestinationDashboardComponent} />
               <Route path="/contactUs" component={ContactUsComponent} />
+              <Route path="/" component={home} />
               <Route path="/t" component={test} />
-              
             </Switch>
           </div>
         </div>

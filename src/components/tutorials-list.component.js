@@ -46,7 +46,7 @@ export default class TutorialsList extends Component {
     let params = {};
 
     if (searchTitle) {
-      params["title"] = searchTitle;
+      params["hotelName"] = searchTitle;
     }
 
     if (page) {
@@ -99,6 +99,7 @@ export default class TutorialsList extends Component {
       .then((response) => {
         console.log(response.data);
         this.refreshList();
+        alert('Removed All the Hotels Successfully!')
       })
       .catch((e) => {
         console.log(e);
@@ -110,9 +111,11 @@ export default class TutorialsList extends Component {
         .then(response => {
           console.log(response.data);
           this.props.history.push('/tutorials')
+          alert('Hotel Deleted Successfully!')
         })
         .catch(e => {
           console.log(e);
+          alert(e.error);
         });
   }
 
