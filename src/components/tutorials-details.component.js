@@ -44,7 +44,7 @@ export default class TutorialsDetails extends Component {
     let params = {};
 
     if (searchTitle) {
-      params["title"] = searchTitle;
+      params["hotelName"] = searchTitle;
     }
 
     if (page) {
@@ -141,13 +141,13 @@ export default class TutorialsDetails extends Component {
 
       <div >
 
-        <h2 style={{marginLeft: "13px"}} className="adminHeading">Destination Details</h2>
+        <h2 style={{marginLeft: "13px"}} className="adminHeading">Hotel Details</h2>
 
         <nav >
           <ol style={{backgroundColor: "white"}} className="breadcrumb">
             <li className="breadcrumb-item"><a href="#">Home</a></li>
             <li className="breadcrumb-item"><a href="#">Admin</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Destination Details</li>
+            <li className="breadcrumb-item active" aria-current="page">Hotel Details</li>
           </ol>
         </nav><br/>
 
@@ -185,7 +185,7 @@ export default class TutorialsDetails extends Component {
                   onClick={() => this.setActiveTutorial(tutorial, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {tutorial.hotelName}
                 </li>
               ))}
           </ul>
@@ -224,47 +224,78 @@ export default class TutorialsDetails extends Component {
           {currentTutorial ? (
             <div>
               <div>
-                <label><strong>Title :</strong></label>{" "}
-                <label style={{textIndent: "100px"}}>{currentTutorial.hotelName}</label>
+                <label><strong>Hotel :</strong></label>{" "}
+                <label style={{textIndent: "200px"}}>{currentTutorial.hotelName}</label>
               </div>
               <div>
                 <label><strong>Description :</strong></label>{" "}
-                <label style={{textIndent: "45px"}}>{currentTutorial.description}</label>
+                <label style={{textIndent: "5px"}}>{currentTutorial.description}</label>
               </div>
               <div>
-                <label><strong>City :</strong></label>{" "}
-                <label style={{textIndent: "102px"}}>{currentTutorial.city}</label>
+                <label><strong>Address :</strong></label>{" "}
+                <label style={{textIndent: "172px"}}>{currentTutorial.address}</label>
                 {/*{currentTutorial.published ? "Published" : "Pending"}*/}
               </div>
               <div>
-                <label><strong>Coordinates :</strong></label>{" "}
-                <label style={{textIndent: "43px"}}>{currentTutorial.coordinates}</label>
+                <label><strong>Date Of Registration :</strong></label>{" "}
+                <label style={{textIndent: "80px"}}>{currentTutorial.date_of_registration}</label>
               </div>
               <div>
-                <label><strong>Area (ha) :</strong></label>{" "}
-                <label style={{textIndent: "63px"}}>{currentTutorial.area}</label>
+                <label><strong>Registration Fee (Rs.) :</strong></label>{" "}
+                <label style={{textIndent: "75px"}}>{currentTutorial.registrationFee}</label>
               </div>
               <div>
-                <label><strong>Altitude :</strong></label>{" "}
-                <label style={{textIndent: "70px"}}>{currentTutorial.altitude}</label>
-              </div>
-              <div>
-                <label><strong>Temperature :</strong></label>{" "}
-                <label style={{textIndent: "35px"}}>{currentTutorial.temperature}</label>
+                <label><strong>Price Range :</strong></label>{" "}
+                <label style={{textIndent: "145px"}}>{currentTutorial.priceRange}</label>
               </div>
               <div>
                 <label><strong>Contact :</strong></label>{" "}
-                <label style={{textIndent: "65px"}}>{currentTutorial.contact}</label>
+                <label style={{textIndent: "175px"}}>{currentTutorial.contactNo}</label>
               </div>
               <div>
-                <label><strong>Entrance Fees :</strong></label>{" "}
-                <label style={{textIndent: "65px"}}>{currentTutorial.entranceFees}</label>
+                <label><strong>email :</strong></label>{" "}
+                <label style={{textIndent: "190px"}}>{currentTutorial.email}</label>
               </div>
               <div>
-                <label><strong>ID / Visa Requirement :</strong></label>{" "}
-                <label style={{textIndent: "100px"}}>{currentTutorial.visaRequirement}</label>
+                <label><strong>Top amenity 1 :</strong></label>{" "}
+                <label style={{textIndent: "125px"}}>{currentTutorial.amenity1}</label>
               </div>
+              <div>
+                <label><strong>Top amenity 2 :</strong></label>{" "}
+                <label style={{textIndent: "125px"}}>{currentTutorial.amenity2}</label>
+              </div>
+              <div>
+                <label><strong>Top amenity 3 :</strong></label>{" "}
+                <label style={{textIndent: "125px"}}>{currentTutorial.amenity3}</label>
+              </div>
+              <div>
+                <label><strong>Top Room Feature 1 :</strong></label>{" "}
+                <label style={{textIndent: "80px"}}>{currentTutorial.feature1}</label>
+              </div>
+              <div>
+                <label><strong>Top Room Feature 2 :</strong></label>{" "}
+                <label style={{textIndent: "80px"}}>{currentTutorial.feature2}</label>
+              </div>
+              <div>
+                <label><strong>Top Room Feature 3 :</strong></label>{" "}
+                <label style={{textIndent: "80px"}}>{currentTutorial.feature3}</label>
+              </div>
+              <div>
+                <label><strong>Popular Cuisine 1 :</strong></label>{" "}
+                <label style={{textIndent: "100px"}}>{currentTutorial.cuisine1}</label>
+              </div>
+              <div>
+                <label><strong>Popular Cuisine 2 :</strong></label>{" "}
+                <label style={{textIndent: "100px"}}>{currentTutorial.cuisine2}</label>
+              </div>
+              <div>
+                <label><strong>Popular Cuisine 3:</strong></label>{" "}
+                <label style={{textIndent: "100px"}}>{currentTutorial.cuisine3}</label>
+              </div>
+              <br></br>
+              <br></br>
               <Link
+                style= {{marginLeft: "40%"}}
                 to={"/tutorials/" + currentTutorial.id}
                 className="submitBtnGreen">
                 Edit
@@ -274,7 +305,7 @@ export default class TutorialsDetails extends Component {
             ) : (
             <div>
               <br />
-              <p>Click on a destination to view more details</p>
+              <p>Click on a Hotel to view more details</p>
             </div>
           )}
         </div>

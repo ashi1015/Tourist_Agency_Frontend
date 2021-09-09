@@ -155,7 +155,7 @@ export default class TouristView extends Component {
 
                 <div className="col-md-12">
 
-                    <h4>Hotels List</h4>
+                    <h4>Tourist List</h4>
 
 
                 </div><br/><br/>
