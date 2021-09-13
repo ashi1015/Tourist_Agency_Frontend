@@ -1,3 +1,11 @@
+.background{
+    /*background-image: url(./images/listDestinations.jpg);*/
+    background-color: #ded8d8;
+    backgroundPosition: 'center';
+    backgroundSize: 'cover';
+    backgroundRepeat: 'no-repeat';
+}
+
 .list {
     text-align: center;
     max-width: 100%;
@@ -163,6 +171,15 @@ table{
     padding-top: 100px;
     padding-bottom: 50px;
     background: #107da7;
+}
+
+.topImage{
+    height: 350px;
+    margin-top: -50px;
+    margin-left: -300px;
+    width: 1715px;
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
 
 .adminHeading{

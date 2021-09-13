@@ -143,6 +143,18 @@ export default class DestinationCardViewComponent extends Component {
 
             <div >
 
+                {/*
+                <div className="card bg-dark text-white">
+                    <img style={{height: "300px", width: "100%"}} src={img} className="card-img" alt="..."></img>
+                    <div className="card-img-overlay">
+                        <h3 style={{textAlign: "center", paddingTop: "80px"}} className="card-title">Top Most
+                            Hotels</h3>
+                        <h5 style={{textAlign: "center"}}>We value Your Safety</h5>
+                    </div>
+                </div>
+                */}
+
+
                 <div className="heading">
                     <p className="contactUsHeadingP">CHOOSE YOUR PLACE</p>
                     <h1 className="destinationHeading">Destinations</h1>
@@ -159,7 +171,6 @@ export default class DestinationCardViewComponent extends Component {
 
                     <br/><br/>
                     <br/><br/>
-
 
                     <div className="input-group mb-3">
                         <input
@@ -199,7 +210,7 @@ export default class DestinationCardViewComponent extends Component {
                                             style={{marginTop: "20px"}}>
                                             {destination.title}
                                         </h6>
-                                        <p >ssss{destination.description}</p>
+                                        <p >{destination.description}</p>
                                         <Link to={"/individualdestinationdetailspage/" + destination.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-primary" style={{marginLeft: "25%"}}> More Details </Link>
 
                                     </div>

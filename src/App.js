@@ -13,8 +13,10 @@ import DestinationCardViewComponent from "./components/destination-cardview.comp
 import IndividualDestinationDetailsComponent from "./components/individual-destination-details.component";
 
 class App extends Component {
+
     render() {
         return (
+
             <Router>
                 <div>
                     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -74,6 +76,7 @@ class App extends Component {
                     </div>
                 </div>
             </Router>
+
         );
     }
 }

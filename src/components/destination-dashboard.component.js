@@ -10,8 +10,11 @@ export default class DestinationDashboardComponent extends Component {
         super(props);
     }
 
+
     render() {
+
         return (
+            <div>
             <div>
                 <h2 className="adminHeading">Destination Management</h2>
 
@@ -66,6 +69,7 @@ export default class DestinationDashboardComponent extends Component {
                     </div>
 
                 </div>
+            </div>
             </div>
         );
     }
