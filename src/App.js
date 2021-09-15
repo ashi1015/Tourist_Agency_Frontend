@@ -11,6 +11,7 @@ import ContactUsComponent from "./components/contact-us.component";
 import UpdateDestinationComponent from "./components/update-destination.component";
 import DestinationCardViewComponent from "./components/destination-cardview.component";
 import IndividualDestinationDetailsComponent from "./components/individual-destination-details.component";
+import GenerateDestinationReportComponent from "./components/generate-destination-report.component";
 
 class App extends Component {
 
@@ -59,6 +60,11 @@ class App extends Component {
                                     Individual Destination Details
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={"/destinationReport"} className="nav-link">
+                                    Generate Report
+                                </Link>
+                            </li>
                         </div>
                     </nav>
 
@@ -72,6 +78,7 @@ class App extends Component {
                             <Route path="/destinations/:id" component={UpdateDestinationComponent} />
                             <Route path="/tourists" component={DestinationCardViewComponent} />
                             <Route path="/individualdestinationdetailspage/:id" component={IndividualDestinationDetailsComponent} />
+                            <Route path="/destinationReport" component={GenerateDestinationReportComponent} />
                         </Switch>
                     </div>
                 </div>
