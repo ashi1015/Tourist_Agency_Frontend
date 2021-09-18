@@ -1,56 +1,48 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { saveAs } from 'file-saver';
-import DestinationDataService from "../services/destination.service";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
+import DestinationDataService from "../services/destination.service";
 
+import { Col, Row } from "reactstrap";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
-class GenerateDestinationReportComponent extends Component {
-
+export default class GenerateDestinationReportComponent extends Component {
     constructor(props) {
         super(props);
+
+        this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
         this.retrieveDestinations = this.retrieveDestinations.bind(this);
         this.refreshList = this.refreshList.bind(this);
         this.setActiveDestination = this.setActiveDestination.bind(this);
         this.setCurrentDestination = this.setCurrentDestination.bind(this);
+        this.removeAllDestinations = this.removeAllDestinations.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-        this.onChangeName = this.onChangeName.bind(this);
-
 
         this.state = {
             destinations: [],
             currentDestination: null,
             currentIndex: -1,
+            searchTitle: "",
 
             page: 1,
             count: 0,
             pageSize: 3,
-
-            name: 'name',
-            receiptId: '',
-            price1: '',
-            price2: '',
         };
-        this.pageSizes = [3, 6, 9];
 
+        this.pageSizes = [3, 6, 9];
     }
 
     componentDidMount() {
         this.retrieveDestinations();
     }
 
-    onChangeName(e) {
-        const name = e.target.value;
+    onChangeSearchTitle(e) {
+        const searchTitle = e.target.value;
 
-        this.setState(function(prevState) {
-            return {
-                currentDestination: {
-                    ...prevState.currentDestination,
-                    name: name
-                }
-            };
+        this.setState({
+            searchTitle: searchTitle,
         });
     }
 
@@ -92,6 +84,22 @@ class GenerateDestinationReportComponent extends Component {
 
     }
 
+    printDocument() {
+        const input = document.getElementById("viewtable");
+        html2canvas(input).then((canvas) => {
+            var imgWidth = 200;
+            var pageHeight = 290;
+            var imgHeight = (canvas.height * imgWidth) / canvas.width;
+            var heightLeft = imgHeight;
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF("p", "mm", "a4");
+            var position = 0;
+            var heightLeft = imgHeight;
+            pdf.addImage(imgData, "JPEG", 4, position, imgWidth, imgHeight);
+            pdf.save("Offer List Report.pdf");
+        });
+    }
+
     refreshList() {
         this.retrieveDestinations();
         this.setState({
@@ -112,6 +120,17 @@ class GenerateDestinationReportComponent extends Component {
             currentDestination: destination,
             currentIndex: index,
         });
+    }
+
+    removeAllDestinations() {
+        DestinationDataService.deleteAll()
+            .then((response) => {
+                console.log(response.data);
+                this.refreshList();
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     }
 
     handlePageChange(event, value) {
@@ -137,34 +156,11 @@ class GenerateDestinationReportComponent extends Component {
         );
     }
 
-    //handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
-
-    handleChange = ({ target: { value, name }}) =>
-        this.setState(prevState => ({
-            [name]: {
-                ...prevState.value,
-                [name]: value
-            }
-        }));
-
-
-    createAndDownloadPdf = () => {
-        axios.post('http://localhost:8085/create-pdf', this.state)
-            .then(() => axios.get('http://localhost:8085/fetch-pdf', { responseType: 'blob' }))
-            .then((res) => {
-                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-
-                saveAs(pdfBlob, 'newPdf.pdf');
-            })
-    }
-
-
-
     render() {
 
         let {
-            destinations,
             searchTitle,
+            destinations,
             currentDestination,
             currentIndex,
             page,
@@ -173,63 +169,82 @@ class GenerateDestinationReportComponent extends Component {
         } = this.state;
 
         return (
-            <div className="App">
+            <div className="col-md-12">
 
-                <div className="tableContainer">
+                <h2 style={{marginLeft: "13px"}} className="adminHeading">Destination Reports</h2>
 
-                    <br/>
-                    <table className="table">
-                        <thead className="thead-dark">
-                        <tr>
-                            <th>Name</th>
-                            <th>City</th>
-                            <th>Mean Temperature</th>
-                            <th>Entrance Fees</th>
-                            <th>Contact Number</th>
-                            <th>Identity Card / Visa Requirement</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <nav >
+                    <ol style={{backgroundColor: "white"}} className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item"><a href="#">Admin</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Generate Report</li>
+                    </ol>
+                </nav> <br/><br/>
+
+                <div>
+                    <Row>
+                        <Col>
+                            <button
+                                onClick={this.printDocument}
+                                className="submitBtnYellow"
+                                variant="contained"
+                                color="primary">
+                                <i className="fa fa-file-pdf-o fa-lg"
+                                    aria-hidden="true" >
+                                    {" "}
+                                    Download PDF
+                                </i>
+                            </button>
+                            <br></br>
+                            <div id="viewtable">
+                                <p style={{float: "right"}}>Date: {new Date().toLocaleString() + ""}</p>
+                                <br/><br/>
+                                <h3 style={{ fontWeight: "bold"}}>
+                                    List of Destinations
+                                </h3>
+                                <br></br>
+                                <table className="table">
+                                    <thead className="thead-dark">
+                                    <tr
+                                        style={{
+                                            backgroundColor: "#afeeee",
+                                            lineHeight: "50px",
+                                        }}>
+                                        <th>Name</th>
+                                        <th>City</th>
+                                        <th>Mean Temperature</th>
+                                        <th>Entrance Fees</th>
+                                        <th>Contact Number</th>
+                                        <th>ID Card / Visa </th>
+                                    </tr>
+                                    </thead>
 
 
-                        {destinations && destinations.map((destination, index) => (
-                            <tr>
-                                <td>{destination.title}</td>
-                                <td>{destination.city}</td>
-                                <td>{destination.temperature}</td>
-                                <td>{destination.entranceFees}</td>
-                                <td>{destination.contact}</td>
-                                <td>{destination.visaRequirement}</td>
-
-
-                            <input type="text" placeholder="Name" name="name" value={destination.title} onChange={this.onChangeName}/>
-                            <input type="text" placeholder="Receipt ID" name="receiptId" value={destination.city} onChange={this.handleChange} />
-                            <input type="text" placeholder="Price 1" name="price1" value={destination.temperature} onChange={this.handleChange} />
-                            <input type="text" placeholder="Price 2" name="price2" value={destination.entranceFees} onChange={this.handleChange} />
-                            </tr>
-
-                        ))}
-
-
-
-                        <button onClick={this.createAndDownloadPdf}>Download PDF</button>
-
-                        </tbody>
-                    </table>
-                    <br/>
-
+                                    {this.state.destinations.length > 0 &&
+                                    this.state.destinations.map((item, index) => (
+                                        <tr
+                                            key={index}
+                                            style={{
+                                                borderBottom: "2px solid #ddd",
+                                                //alignContent: "centre",
+                                            }}
+                                        >
+                                            <td style={{ paddingLeft: "0" }}>{item.title}</td>
+                                            <td>{item.city}</td>
+                                            <td>{item.temperature}</td>
+                                            <td>{item.description}</td>
+                                            <td>{item.entranceFees}%</td>
+                                            <td>Rs.{item.contact}</td>
+                                            <hr /> <hr />
+                                        </tr>
+                                    ))}
+                                </table>
+                                <br/><br/><br/>
+                            </div>
+                        </Col>
+                    </Row>
                 </div>
-
-                <br/>
-
-
-
             </div>
-
-
-
         );
     }
 }
-
-export default GenerateDestinationReportComponent;

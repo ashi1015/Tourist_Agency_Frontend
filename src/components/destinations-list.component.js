@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
 import DestinationDataService from "../services/destination.service";
 
+import { Col, Row } from "reactstrap";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 export default class DestinationsListComponent extends Component {
   constructor(props) {
     super(props);
@@ -78,6 +82,22 @@ export default class DestinationsListComponent extends Component {
                 console.log(e);
             });
 
+    }
+
+    printDocument() {
+        const input = document.getElementById("viewtable");
+        html2canvas(input).then((canvas) => {
+            var imgWidth = 200;
+            var pageHeight = 290;
+            var imgHeight = (canvas.height * imgWidth) / canvas.width;
+            var heightLeft = imgHeight;
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF("p", "mm", "a4");
+            var position = 0;
+            var heightLeft = imgHeight;
+            pdf.addImage(imgData, "JPEG", 4, position, imgWidth, imgHeight);
+            pdf.save("Offer List Report.pdf");
+        });
     }
 
     refreshList() {

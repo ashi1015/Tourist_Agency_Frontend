@@ -13,6 +13,7 @@ import DestinationCardViewComponent from "./components/destination-cardview.comp
 import IndividualDestinationDetailsComponent from "./components/individual-destination-details.component";
 import GenerateDestinationReportComponent from "./components/generate-destination-report.component";
 
+
 class App extends Component {
 
     render() {
@@ -65,6 +66,8 @@ class App extends Component {
                                     Generate Report
                                 </Link>
                             </li>
+
+
                         </div>
                     </nav>
 
@@ -79,6 +82,7 @@ class App extends Component {
                             <Route path="/tourists" component={DestinationCardViewComponent} />
                             <Route path="/individualdestinationdetailspage/:id" component={IndividualDestinationDetailsComponent} />
                             <Route path="/destinationReport" component={GenerateDestinationReportComponent} />
+
                         </Switch>
                     </div>
                 </div>

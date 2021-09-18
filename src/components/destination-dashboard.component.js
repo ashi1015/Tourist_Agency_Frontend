@@ -60,7 +60,7 @@ export default class DestinationDashboardComponent extends Component {
                     <div className="column2">
                         <div className="card text-white bg-warning mb-3" style={{width: "18rem"}}>
                             <div className="card-body">
-                                <Link to={"/add"}>
+                                <Link to={"/destinationReport"}>
                                     <img className="card-img-top" src={report} style={{height: "140px"}} alt="Card image cap" />
                                     <p className="card-text">Generate Reports</p>
                                 </Link><br/>
