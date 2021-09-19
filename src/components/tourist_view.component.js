@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
+import HotelDataService from "../services/hotel.service";
 import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
 import destination1 from '../images/destination1.jpg'
@@ -16,7 +16,7 @@ export default class TouristView extends Component {
         this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
 
         this.state = {
-            tutorials: [],
+            hotels: [],
             currentTutorial: null,
             currentIndex: -1,
             searchTitle: "",
@@ -55,12 +55,12 @@ export default class TouristView extends Component {
         const { searchTitle, page, pageSize } = this.state;
         const params = this.getRequestParams(searchTitle, page, pageSize);
 
-        TutorialDataService.getAll(params)
+        HotelDataService.getAll(params)
             .then((response) => {
-                const { tutorials, totalPages } = response.data;
+                const { hotels, totalPages } = response.data;
 
                 this.setState({
-                    tutorials: tutorials,
+                    hotels: hotels,
                     count: totalPages,
                 });
                 console.log(response.data);
@@ -78,15 +78,15 @@ export default class TouristView extends Component {
         });
     }
 
-    setActiveTutorial(tutorial, index) {
+    setActiveTutorial(hotel, index) {
         this.setState({
-            currentTutorial: tutorial,
+            currentTutorial: hotel,
          
         });
     }
 
     removeAllTutorials() {
-        TutorialDataService.deleteAll()
+        HotelDataService.deleteAll()
             .then((response) => {
                 console.log(response.data);
                 this.refreshList();
@@ -122,7 +122,7 @@ export default class TouristView extends Component {
     render() {
         const {
             searchTitle,
-            tutorials,
+            hotels,
             currentTutorial,
             currentIndex,
             page,
@@ -155,23 +155,23 @@ export default class TouristView extends Component {
 
                 <div className="col-md-12">
 
-                    <h4>Hotels List</h4>
+                    <h4>Tourist List</h4>
 
 
                 </div><br/><br/>
 
                 <div className="col-md-12">
 
-                    {tutorials &&
-                    tutorials.map((tutorial, index) => (
+                    {hotels &&
+                    hotels.map((hotel, index) => (
 
                     <div className="card" style={{display: 'flex', flexDirection: 'row'}} style={{width: "18rem"}}>
                         <img className="card-img-top" src="../images/h1.jpg" alt="Card image cap" />
                         <div className="card-body">
                             <h5 className={ "card-title " + (index === currentIndex ? "active" : "")}
-                                onClick={() => this.setActiveTutorial(tutorial, index)}
+                                onClick={() => this.setActiveTutorial(hotel, index)}
                                 key={index}>
-                                {tutorial.hotelName}
+                                {hotel.hotelName}
                             </h5>
                             <p className="card-text">Some quick example text to build on the card title and make up
                             the bulk of the card's content.</p>
@@ -255,7 +255,7 @@ export default class TouristView extends Component {
                                 {currentTutorial.visaRequirement}
                             </div>
                             <Link
-                                to={"/tutorials/" + currentTutorial.id}
+                                to={"/hotels/" + currentTutorial.id}
                                 className="badge badge-warning">
                                 Edit
                             </Link> <br/><br/><br/><br/>

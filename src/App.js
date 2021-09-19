@@ -3,16 +3,17 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddTutorial from "./components/add-tutorial.component";
-import Tutorial from "./components/tutorial.component";
-import TutorialsList from "./components/tutorials-list.component";
-import TutorialsDetails from "./components/tutorials-details.component";
+import AddHotel from "./components/add-hotels.component";
+import Hotels from "./components/hotel.component";
+import HotelsList from "./components/hotels-list.component";
+import HotelsDetails from "./components/Hotel-details.component";
 import TouristView from "./components/tourist_view.component";
-import DestinationDashboardComponent from "./components/destination-dashboard.component";
+import HotelDashboardComponent from "./components/hotel-dashboard.component";
 import ContactUsComponent from "./components/contact-us.component";
 import HotelMain from './components/Hotels/HotelMainPage';
 import test from './components/Hotels/test';
 import Galadari from "./components/Individual Hotels/Hotel.Galadari";
+
 
 class App extends Component {
   render() {
@@ -20,12 +21,12 @@ class App extends Component {
       <Router>
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <a href="/tutorials" className="navbar-brand">
+            <a href="/hotels" className="navbar-brand">
               Travel Agency
             </a>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={"/touristList"} className="nav-link">
+                <Link to={"/hotelList"} className="nav-link">
                   Hotels List
                 </Link>
               </li>
@@ -61,18 +62,20 @@ class App extends Component {
             <Switch>
             <Route path="/Galadari" component={Galadari} />
               <Route exact path="/hotels" component={HotelMain} />
-              <Route exact path="/individualDestinationDetails" component={TutorialsDetails} />
-              <Route exact path={"/touristList"} component={TutorialsList} />
-              <Route exact path="/add" component={AddTutorial} />
-              <Route path="/tutorials/:id" component={Tutorial} />
+              <Route exact path="/individualDestinationDetails" component={HotelsDetails} />
+              <Route exact path={"/hotelList"} component={HotelsList} />
+              <Route exact path="/add" component={AddHotel} />
+              <Route path="/hotels/:id" component={Hotels} />
               <Route path="/tourists" component={TouristView} />
-              <Route path="/HotelDashboard" component={DestinationDashboardComponent} />
+              <Route path="/HotelDashboard" component={HotelDashboardComponent} />
               <Route path="/contactUs" component={ContactUsComponent} />
               <Route path="/t" component={test} />
               
             </Switch>
+            
           </div>
         </div>
+
       </Router>
     );
   }

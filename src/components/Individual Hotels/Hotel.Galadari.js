@@ -16,13 +16,18 @@ export default class Galadari extends Component {
         super(props);
 
         // this.booked = this.booked.bind(this);
-
+        this.bookingHotel = this.bookingHotel.bind(this);
         this.state = {
           tutorials: []
-            
+          
         }
     }
    
+    bookingHotel(event){
+        alert('Hotel Booked!');
+        event.preventDefault();
+    }
+
     render() {
 
         return (
@@ -90,7 +95,7 @@ export default class Galadari extends Component {
                             </div>
                             <div class="col">
                                 <div class="card h-100">
-                                <img src={img2} class="card-img-top" alt="..."></img>
+                                <img src={img3} class="card-img-top" alt="..."></img>
                                 <div class="card-body">
                                     <h5 class="card-title">Top Room Features</h5>
                                     <p class="card-text">A/C</p>
@@ -102,7 +107,7 @@ export default class Galadari extends Component {
                             </div>
                             <div class="col">
                                 <div class="card h-100">
-                                <img src={img3} class="card-img-top" alt="..."></img>
+                                <img src={img2} class="card-img-top" alt="..."></img>
                                 <div class="card-body">
                                     <h5 class="card-title">Most Popular Cuisines</h5>
                                     <p class="card-text">Milk Rice and Lunumiris</p>
@@ -115,8 +120,9 @@ export default class Galadari extends Component {
                             <br></br>
                             <div>
                                 <button 
+                                onClick = {this.bookingHotel}
                                 class="btn btn-success" 
-                                style={{marginLeft: "30%", width: "380px"}}>Book Now</button>
+                                style={{marginLeft: "33%", width: "385px"}}>Book Now</button>
                                     
                             </div>
                         </div>
