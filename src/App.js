@@ -14,8 +14,7 @@ import HotelReport from "./components/Hotels/HotelReport"
 import HotelCardViewComponent from "./components/Hotels/Hotel_ComponentView";
 import IndividualHotelDetailsComponent from "./components/Individual Hotels/individual_Hotels";
 import HotelMain from './components/Hotels/HotelMainPage';
-import Gallery from "./components/Individual Hotels/Gallery";
-
+import Gallery from './components/Individual Hotels/Gallery'
 class App extends Component {
   render() {
     return (
