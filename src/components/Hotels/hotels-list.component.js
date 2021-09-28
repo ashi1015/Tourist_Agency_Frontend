@@ -1,8 +1,13 @@
+/*
+* Hotels List view for the admin
+* display all the hotels added to the database
+* */
+
 import React, { Component } from "react";
-import HotelDataService from "../services/hotel.service";
+import HotelDataService from "../../services/hotel.service";
 import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
-import image from '../images/destination1.jpg';
+import image from '../../images/destination1.jpg';
 
 
 export default class TutorialsList extends Component {
@@ -197,10 +202,8 @@ export default class TutorialsList extends Component {
             <thead className="thead-dark">
               <tr>
                 <th>Hotel</th>
-                {/* <th>Address</th> */}
                 <th>DOR</th>
                 <th>Reg Fee</th>
-                {/* <th>Price Range</th> */}
                 <th>Contact</th>
                 <th>Email</th>
                 <th>Action</th>
@@ -212,17 +215,16 @@ export default class TutorialsList extends Component {
             {hotels && hotels.map((hotel, index) => (
                 <tr>
                   <td>{hotel.hotelName}</td>
-                  {/* <td>{tutorial.address}</td> */}
                   <td>{hotel.date_of_registration}</td>
                   <td>{hotel.registrationFee}</td>
-                  {/* <td>{tutorial.priceRange}</td> */}
                   <td>{hotel.contactNo}</td>
                   <td>{hotel.email}</td>
                  
                   {/*<td>{tutorial.published ? "Published" : "Pending"}</td>*/}
                   <td>
                     <Link to={"/hotels/" + hotel.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-success btn-sm"> Update </Link>
-                    <button className="btn btn-danger btn-sm" style={{fontWeight: "bold", marginLeft: "10px", fontSize: "13px"}} onClick={this.deleteTutorial}> Delete </button>
+                    <Link to={"/hotels/" + hotel.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-danger btn-sm"> Delete </Link>
+                    {/* <button className="btn btn-danger btn-sm" style={{fontWeight: "bold", marginLeft: "10px", fontSize: "13px"}} onClick={this.deleteTutorial}> Delete </button> */}
                   </td>
                 </tr>
             ))}
