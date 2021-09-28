@@ -7,23 +7,23 @@ import React, { Component } from "react";
 import HotelDataService from "../../services/hotel.service";
 import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
-import image from '../../images/destination1.jpg';
+import image from '../../images/h1.jpg';
 
 
-export default class TutorialsList extends Component {
+export default class HotelsList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.retrieveHotels = this.retrieveHotels.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.setActiveHotel = this.setActiveHotel.bind(this);
+    this.removeAllHotels = this.removeAllHotels.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
 
     this.state = {
       hotels: [],
-      currentTutorial: null,
+      currentHotel: null,
       currentIndex: -1,
       searchTitle: "",
 
@@ -36,7 +36,7 @@ export default class TutorialsList extends Component {
   }
 
   componentDidMount() {
-    this.retrieveTutorials();
+    this.retrieveHotels();
   }
 
   onChangeSearchTitle(e) {
@@ -65,7 +65,7 @@ export default class TutorialsList extends Component {
     return params;
   }
 
-  retrieveTutorials() {
+  retrieveHotels() {
     const { searchTitle, page, pageSize } = this.state;
     const params = this.getRequestParams(searchTitle, page, pageSize);
 
@@ -85,21 +85,21 @@ export default class TutorialsList extends Component {
   }
 
   refreshList() {
-    this.retrieveTutorials();
+    this.retrieveHotels();
     this.setState({
-      currentTutorial: null,
+      currentHotel: null,
       currentIndex: -1,
     });
   }
 
-  setActiveTutorial(hotel, index) {
+  setActiveHotel(hotel, index) {
     this.setState({
-      currentTutorial: hotel,
+      currentHotel: hotel,
       currentIndex: index,
     });
   }
 
-  removeAllTutorials() {
+  removeAllHotels() {
     HotelDataService.deleteAll()
       .then((response) => {
         console.log(response.data);
@@ -111,8 +111,8 @@ export default class TutorialsList extends Component {
       });
   }
 
-  deleteTutorial() {
-    HotelDataService.delete(this.state.currentTutorial.id)
+  deleteHotel() {
+    HotelDataService.delete(this.state.currentHotel.id)
         .then(response => {
           console.log(response.data);
           this.props.history.push('/hotels')
@@ -130,7 +130,7 @@ export default class TutorialsList extends Component {
         page: value,
       },
       () => {
-        this.retrieveTutorials();
+        this.retrieveHotels();
       }
     );
   }
@@ -142,7 +142,7 @@ export default class TutorialsList extends Component {
         page: 1
       },
       () => {
-        this.retrieveTutorials();
+        this.retrieveHotels();
       }
     );
   }
@@ -151,7 +151,7 @@ export default class TutorialsList extends Component {
     const {
       searchTitle,
       hotels,
-      currentTutorial,
+      currentHotel,
       currentIndex,
       page,
       count,
@@ -186,7 +186,7 @@ export default class TutorialsList extends Component {
                 className="btn btn-info"
                 style={{paddingLeft: "30px", paddingRight: "30px"}}
                 type="button"
-                onClick={this.retrieveTutorials} >
+                onClick={this.retrieveHotels} >
                 Search
               </button>
             </div>
@@ -224,7 +224,7 @@ export default class TutorialsList extends Component {
                   <td>
                     <Link to={"/hotels/" + hotel.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-success btn-sm"> Update </Link>
                     <Link to={"/hotels/" + hotel.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-danger btn-sm"> Delete </Link>
-                    {/* <button className="btn btn-danger btn-sm" style={{fontWeight: "bold", marginLeft: "10px", fontSize: "13px"}} onClick={this.deleteTutorial}> Delete </button> */}
+                    {/* <button className="btn btn-danger btn-sm" style={{fontWeight: "bold", marginLeft: "10px", fontSize: "13px"}} onClick={this.deleteHotel}> Delete </button> */}
                   </td>
                 </tr>
             ))}
@@ -258,12 +258,12 @@ export default class TutorialsList extends Component {
       <div className="col-md-12">
 
   
-        <Link to={"/add"} className="submitBtnYellow">Add New Hotel</Link>
+        <Link to={"/add"} className="submitBtnYellow" >Add New Hotel</Link>
    
 
         <button
             className="submitBtnRed"
-            onClick={this.removeAllTutorials} >
+            onClick={this.removeAllHotels} >
           Remove All
         </button>
       </div>
