@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HotelDataService from "../../services/hotel.service";
 
-export default class Tutorial extends Component {
+export default class HotelUpdate extends Component {
   constructor(props) {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -22,13 +22,13 @@ export default class Tutorial extends Component {
     this.onChangeCuisine2 = this.onChangeCuisine2.bind(this);
     this.onChangeCuisine3 = this.onChangeCuisine3.bind(this);
 
-    this.getTutorial = this.getTutorial.bind(this);
+    this.getHotel = this.getHotel.bind(this);
     this.updatePublished = this.updatePublished.bind(this);
-    this.updateTutorial = this.updateTutorial.bind(this);
-    this.deleteTutorial = this.deleteTutorial.bind(this);
+    this.updateHotel = this.updateHotel.bind(this);
+    this.deleteHotel = this.deleteHotel.bind(this);
 
     this.state = {
-      currentTutorial: {
+      currentHotel: {
         id: null,
         hotelName: "",
         description: "",
@@ -54,7 +54,7 @@ export default class Tutorial extends Component {
   }
 
   componentDidMount() {
-    this.getTutorial(this.props.match.params.id);
+    this.getHotel(this.props.match.params.id);
   }
 
   onChangeTitle(e) {
@@ -62,8 +62,8 @@ export default class Tutorial extends Component {
 
     this.setState(function(prevState) {
       return {
-        currentTutorial: {
-          ...prevState.currentTutorial,
+        currentHotel: {
+          ...prevState.currentHotel,
           hotelName: hotelName
         }
       };
@@ -74,8 +74,8 @@ export default class Tutorial extends Component {
     const description = e.target.value;
     
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         description: description
       }
     }));
@@ -85,8 +85,8 @@ export default class Tutorial extends Component {
     const address = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         address: address
       }
     }));
@@ -96,8 +96,8 @@ export default class Tutorial extends Component {
     const date_of_registration = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         date_of_registration: date_of_registration
       }
     }));
@@ -107,8 +107,8 @@ export default class Tutorial extends Component {
     const registrationFee = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         registrationFee: registrationFee
       }
     }));
@@ -118,8 +118,8 @@ export default class Tutorial extends Component {
     const priceRange = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         priceRange: priceRange
       }
     }));
@@ -129,8 +129,8 @@ export default class Tutorial extends Component {
     const contactNo = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         contactNo: contactNo
       }
     }));
@@ -140,8 +140,8 @@ export default class Tutorial extends Component {
     const email = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         email: email
       }
     }));
@@ -151,8 +151,8 @@ export default class Tutorial extends Component {
     const amenity1 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         amenity1: amenity1
       }
     }));
@@ -163,8 +163,8 @@ export default class Tutorial extends Component {
     const amenity2 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         amenity2: amenity2
       }
     }));
@@ -174,8 +174,8 @@ export default class Tutorial extends Component {
     const amenity3 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         amenity3: amenity3
       }
     }));
@@ -185,8 +185,8 @@ export default class Tutorial extends Component {
     const feature1 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         feature1: feature1
       }
     }));
@@ -196,8 +196,8 @@ export default class Tutorial extends Component {
     const feature2 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         feature2: feature2
       }
     }));
@@ -207,8 +207,8 @@ export default class Tutorial extends Component {
     const feature3 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         feature3: feature3
       }
     }));
@@ -218,8 +218,8 @@ export default class Tutorial extends Component {
     const cuisine1 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         cuisine1: cuisine1
       }
     }));
@@ -229,8 +229,8 @@ export default class Tutorial extends Component {
     const cuisine2 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         cuisine2: cuisine2
       }
     }));
@@ -240,18 +240,18 @@ export default class Tutorial extends Component {
     const cuisine3 = e.target.value;
 
     this.setState(prevState => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currentHotel: {
+        ...prevState.currentHotel,
         cuisine3: cuisine3
       }
     }));
   }
 
-  getTutorial(id) {
+  getHotel(id) {
     HotelDataService.get(id)
       .then(response => {
         this.setState({
-          currentTutorial: response.data
+          currentHotel: response.data
         });
         console.log(response.data);
       })
@@ -262,17 +262,17 @@ export default class Tutorial extends Component {
 
   updatePublished(status) {
     var data = {
-      id: this.state.currentTutorial.id,
-      hotelName: this.state.currentTutorial.hotelName,
-      description: this.state.currentTutorial.description,
+      id: this.state.currentHotel.id,
+      hotelName: this.state.currentHotel.hotelName,
+      description: this.state.currentHotel.description,
       published: status
     };
 
-    HotelDataService.update(this.state.currentTutorial.id, data)
+    HotelDataService.update(this.state.currentHotel.id, data)
       .then(response => {
         this.setState(prevState => ({
-          currentTutorial: {
-            ...prevState.currentTutorial,
+          currentHotel: {
+            ...prevState.currentHotel,
             published: status
           }
         }));
@@ -283,10 +283,10 @@ export default class Tutorial extends Component {
       });
   }
 
-  updateTutorial() {
+  updateHotel() {
     HotelDataService.update(
-      this.state.currentTutorial.id,
-      this.state.currentTutorial
+      this.state.currentHotel.id,
+      this.state.currentHotel
     )
       .then(response => {
         console.log(response.data);
@@ -299,8 +299,8 @@ export default class Tutorial extends Component {
       });
   }
 
-  deleteTutorial() {    
-    HotelDataService.delete(this.state.currentTutorial.id)
+  deleteHotel() {    
+    HotelDataService.delete(this.state.currentHotel.id)
       .then(response => {
         console.log(response.data);
         alert("Hotel Deleted!")
@@ -312,11 +312,11 @@ export default class Tutorial extends Component {
   }
 
   render() {
-    const { currentTutorial } = this.state;
+    const { currentHotel } = this.state;
 
     return (
       <div>
-        {currentTutorial ? (
+        {currentHotel ? (
           <div className="edit-form">
             <h4>Hotel</h4>
             <form>
@@ -327,7 +327,7 @@ export default class Tutorial extends Component {
                   type="text"
                   className="form-control"
                   id="hotelName"
-                  value={currentTutorial.hotelName}
+                  value={currentHotel.hotelName}
                   onChange={this.onChangeTitle}
                 />
               </div>
@@ -338,7 +338,7 @@ export default class Tutorial extends Component {
                   type="text"
                   className="form-control"
                   id="description"
-                  value={currentTutorial.description}
+                  value={currentHotel.description}
                   onChange={this.onChangeDescription}
                 />
               </div>
@@ -349,7 +349,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="address"
-                    value={currentTutorial.address}
+                    value={currentHotel.address}
                     onChange={this.onChangeAddress}
                 />
               </div>
@@ -360,7 +360,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="date_of_registration"
-                    value={currentTutorial.date_of_registration}
+                    value={currentHotel.date_of_registration}
                     onChange={this.onChangeDOR}
                 />
               </div>
@@ -371,7 +371,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="registrationFee"
-                    value={currentTutorial.registrationFee}
+                    value={currentHotel.registrationFee}
                     onChange={this.onChangeRegFee}
                 />
               </div>
@@ -382,7 +382,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="priceRange"
-                    value={currentTutorial.priceRange}
+                    value={currentHotel.priceRange}
                     onChange={this.onChangePriceRange}
                 />
               </div>
@@ -393,7 +393,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="contactNo"
-                    value={currentTutorial.contactNo}
+                    value={currentHotel.contactNo}
                     onChange={this.onChangeContact}
                 />
               </div>
@@ -404,7 +404,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="email"
-                    value={currentTutorial.email}
+                    value={currentHotel.email}
                     onChange={this.onChangeEmail}
                 />
               </div>
@@ -415,7 +415,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity1"
-                    value={currentTutorial.amenity1}
+                    value={currentHotel.amenity1}
                     onChange={this.onChangeAmenity1}
                 />
               </div>
@@ -426,7 +426,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity2"
-                    value={currentTutorial.amenity2}
+                    value={currentHotel.amenity2}
                     onChange={this.onChangeAmenity2}
                 />
               </div>
@@ -437,7 +437,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity3"
-                    value={currentTutorial.amenity3}
+                    value={currentHotel.amenity3}
                     onChange={this.onChangeAmenity3}
                 />
               </div>
@@ -448,7 +448,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity3"
-                    value={currentTutorial.amenity3}
+                    value={currentHotel.amenity3}
                     onChange={this.onChangeAmenity3}
                 />
               </div>
@@ -459,7 +459,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity3"
-                    value={currentTutorial.amenity3}
+                    value={currentHotel.amenity3}
                     onChange={this.onChangeAmenity3}
                 />
               </div>
@@ -470,7 +470,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="amenity3"
-                    value={currentTutorial.amenity3}
+                    value={currentHotel.amenity3}
                     onChange={this.onChangeAmenity3}
                 />
               </div>
@@ -481,7 +481,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="feature1"
-                    value={currentTutorial.feature1}
+                    value={currentHotel.feature1}
                     onChange={this.onChangeFeature1}
                 />
               </div>
@@ -492,7 +492,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="feature2"
-                    value={currentTutorial.feature2}
+                    value={currentHotel.feature2}
                     onChange={this.onChangeFeature2}
                 />
               </div>
@@ -503,7 +503,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="feature3"
-                    value={currentTutorial.feature3}
+                    value={currentHotel.feature3}
                     onChange={this.onChangeFeature3}
                 />
               </div>
@@ -514,7 +514,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="cuisine1"
-                    value={currentTutorial.cuisine1}
+                    value={currentHotel.cuisine1}
                     onChange={this.onChangeCuisine1}
                 />
               </div>
@@ -525,7 +525,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="cuisine2"
-                    value={currentTutorial.cuisine2}
+                    value={currentHotel.cuisine2}
                     onChange={this.onChangeCuisine2}
                 />
               </div>
@@ -536,7 +536,7 @@ export default class Tutorial extends Component {
                     type="text"
                     className="form-control"
                     id="cuisine3"
-                    value={currentTutorial.cuisine3}
+                    value={currentHotel.cuisine3}
                     onChange={this.onChangeCuisine3}
                 />
               </div>
@@ -545,11 +545,11 @@ export default class Tutorial extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentHotel.published ? "Published" : "Pending"}
               </div>
             </form>
 
-            {currentTutorial.published ? (
+            {currentHotel.published ? (
               <button
                 style={{width: "120px", fontSize: "13px", marginLeft: "350px",  marginRight: "50px"}}
                 className="btn btn-warning"
@@ -572,7 +572,7 @@ export default class Tutorial extends Component {
             <button
               style={{width: "120px", fontSize: "13px", marginRight: "50px"}}
               className="btn btn-danger"
-              onClick={this.deleteTutorial}
+              onClick={this.deleteHotel}
             >
               Delete
             </button>
@@ -581,7 +581,7 @@ export default class Tutorial extends Component {
               style={{width: "120px", fontSize: "13px"}}
               type="submit"
               className="btn btn-primary"
-              onClick={this.updateTutorial}
+              onClick={this.updateHotel}
             >
               Update
             </button>
