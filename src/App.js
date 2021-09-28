@@ -3,17 +3,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddHotel from "./components/add-hotels.component";
-import Hotels from "./components/hotel.component";
-import HotelsList from "./components/hotels-list.component";
-import HotelsDetails from "./components/Hotel-details.component";
-import TouristView from "./components/tourist_view.component";
-import HotelDashboardComponent from "./components/hotel-dashboard.component";
+import AddHotel from "./components/Hotels/add-hotels.component";
+import UpdateHotels from "./components/Hotels/Update_hotel.component";
+import HotelsList from "./components/Hotels/hotels-list.component";
+import HotelsDetails from "./components/Hotels/Hotel-details.component";
+import HotelDashboardComponent from "./components/Hotels/hotel-dashboard.component";
 import ContactUsComponent from "./components/contact-us.component";
-import HotelMain from './components/Hotels/HotelMainPage';
-import test from './components/Hotels/test';
 import Galadari from "./components/Individual Hotels/Hotel.Galadari";
-
+import HotelReport from "./components/Hotels/HotelReport"
+import HotelCardViewComponent from "./components/Hotels/Hotel_ComponentView";
+import IndividualHotelDetailsComponent from "./components/Individual Hotels/individual_Hotels";
+import HotelMain from './components/Hotels/HotelMainPage';
+import Gallery from "./components/Individual Hotels/Gallery";
 
 class App extends Component {
   render() {
@@ -31,20 +32,11 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/add"} className="nav-link">
-                  Add
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to={"/hotels"} className="nav-link">
                   Hotels
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to={"/tourists"} className="nav-link">
-                  Tourists
-                </Link>
-              </li>
+            
               <li className="nav-item">
                 <Link to={"/HotelDashboard"} className="nav-link">
                   Hotels Dashboard
@@ -60,16 +52,18 @@ class App extends Component {
 
           <div className="container mt-3">
             <Switch>
-            <Route path="/Galadari" component={Galadari} />
+              <Route path="/image" component={Gallery}/>
+              <Route path="/i/:id" component={IndividualHotelDetailsComponent}/>
               <Route exact path="/hotels" component={HotelMain} />
+              <Route path="/hotelsV" component={HotelCardViewComponent}/>
+              <Route path="/HotelDashbaord/Report" component={HotelReport}/>
+              <Route path="/Galadari" component={Galadari} />
               <Route exact path="/individualDestinationDetails" component={HotelsDetails} />
               <Route exact path={"/hotelList"} component={HotelsList} />
               <Route exact path="/add" component={AddHotel} />
-              <Route path="/hotels/:id" component={Hotels} />
-              <Route path="/tourists" component={TouristView} />
+              <Route path="/hotels/:id" component={UpdateHotels} />
               <Route path="/HotelDashboard" component={HotelDashboardComponent} />
               <Route path="/contactUs" component={ContactUsComponent} />
-              <Route path="/t" component={test} />
               
             </Switch>
             
