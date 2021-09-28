@@ -1,163 +1,255 @@
+/**
+ * Hotels Card Views
+ * Display all the hotels published
+ * Working Fine
+ */
+
 import React, { Component } from "react";
-import img1 from '../../images/h7.jpg'
-import img2 from '../../images/h2.jpg'
-import img3 from '../../images/h4.jpg'
-import img4 from '../../images/h10.png'
-import img5 from '../../images/h5.jpg'
-import img6 from '../../images/h11.jpg'
-import img7 from '../../images/h9.jpg'
+import HotelDataService from "../../services/hotel.service";
+import { Link } from "react-router-dom";
+import Pagination from "@material-ui/lab/Pagination";
+import img from "../../images/h1.jpg";
+import img2 from "../../images/h5.jpg";
 
-
-export default class HotelMain extends Component {
+export default class HotelMainPage extends Component {
     constructor(props) {
         super(props);
+        this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+        this.retrieveHotels = this.retrieveHotels.bind(this);
+        this.refreshList = this.refreshList.bind(this);
+        this.setActiveDestination = this.setActiveDestination.bind(this);
+        this.removeAllHotels = this.removeAllHotels.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
 
         this.state = {
-            hotels:[]
-        }
+            hotels: [],
+            currentHotel: null,
+            currentIndex: -1,
+            searchTitle: "",
+
+            page: 1,
+            count: 0,
+            pageSize: 3,
+        };
+
+        this.pageSizes = [3, 6, 9];
     }
 
-//retrieving data from db
-// componentDidMount(){
-//     axios.get(`http://localhost:8085/api/tutorials/`)
-//         .then(response => {
-//             console.log({hotels : response.data.data})
-//             this.setState({hotels : response.data.data})
-//         })
-//     }
+    componentDidMount() {
+        this.retrieveHotels();
+    }
 
+    onChangeSearchTitle(e) {
+        const searchTitle = e.target.value;
 
+        this.setState({
+            searchTitle: searchTitle,
+        });
+    }
+
+    getRequestParams(searchTitle, page, pageSize) {
+        let params = {};
+
+        if (searchTitle) {
+            params["hotelName"] = searchTitle;
+        }
+
+        if (page) {
+            params["page"] = page - 1;
+        }
+
+        if (pageSize) {
+            params["size"] = pageSize;
+        }
+
+        return params;
+    }
+
+    retrieveHotels() {
+        const { searchTitle, page, pageSize } = this.state;
+        const params = this.getRequestParams(searchTitle, page, pageSize);
+
+        HotelDataService.getAll(params)
+            .then((response) => {
+                const { hotels, totalPages } = response.data;
+
+                this.setState({
+                    hotels: hotels,
+                    count: totalPages,
+                });
+                console.log(response.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    refreshList() {
+        this.retrieveHotels();
+        this.setState({
+            currentHotel: null,
+            currentIndex: -1,
+        });
+    }
+
+    setActiveDestination(hotel, index) {
+        this.setState({
+            currentHotel: hotel,
+            currentIndex: index,
+        });
+    }
+
+    removeAllHotels() {
+        HotelDataService.deleteAll()
+            .then((response) => {
+                console.log(response.data);
+                this.refreshList();
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    handlePageChange(event, value) {
+        this.setState(
+            {
+                page: value,
+            },
+            () => {
+                this.retrieveHotels();
+            }
+        );
+    }
+
+    handlePageSizeChange(event) {
+        this.setState(
+            {
+                pageSize: event.target.value,
+                page: 1
+            },
+            () => {
+                this.retrieveHotels();
+            }
+        );
+    }
 
     render() {
+        const {
+            searchTitle,
+            hotels,
+            currentHotel,
+            currentIndex,
+            page,
+            count,
+            pageSize,
+        } = this.state;
+
         return (
-            <div>
 
-                <div class="card bg-dark text-white">
-                <img style={{height: "300px"}} src={img4} class="card-img" alt="..."></img>
-                <div class="card-img-overlay">
-                    <h3 style={{textAlign: "center", paddingTop: "80px"}} class="card-title">Top Most Hotels</h3>
-                    <h5 style={{textAlign: "center"}}>We value Your Safety</h5>
+            <div >
+
+
+                <div className="heading">
+                    <p className="hotelMainHeading">BEST HOTELS IN SRI LANKA</p>
+                    {/* <h1 className="destinationHeading">Hotels</h1> */}
+                    <br/>
                 </div>
-                </div>
-                <div className="container">
-                <br></br>
-                <br></br>
-                <br></br>
-                {/* {this.state.hotels.length > 0 && this.state.hotels.map((item, index1) => ( */}
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img1} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                            <h5 class="card-title">Hotel Galadari</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>The finest star class hotel in Sri Lanka with the best of dinning, accommodation and entertainment facilities.
-                                This 450 roomed beauty is located facing the foaming ripples of the Indian Ocean and remains to be one of the best hotels in Sri Lanka. 
-                                </p>
-                                <a href="/Galadari" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 1 mins ago</small>
-                            </div>
-                            </div>
+
+                <div className="col-md-12">
+
+                    <br/><br/><br/><br/>
+
+                    <p style={{marginTop: "50px", fontWeight: "bolder", fontSize: "20px"}}>Choose Your Hotel</p>
+                    <h1 className="destinationHeading2"><b>Explore the Island for Travel</b></h1>
+                    <img className="card-img-top" src={img2} style={{width: "370px", height: "240px", marginRight: "30px", marginTop: "-165px", float: "right", marginBottom: "80px"}} alt="Card image cap" />
+
+                    <br/><br/>
+                    <br/><br/>
+
+                    <div className="input-group mb-3">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search by Hotel name"
+                            value={searchTitle}
+                            onChange={this.onChangeSearchTitle} />
+                        <div className="input-group-append">
+                            <button
+                                type="button"
+                                className="btn btn-info"
+                                style={{paddingLeft: "25px", paddingRight: "25px"}}
+                                onClick={this.retrieveHotels} >
+                                Search
+                            </button>
                         </div>
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img2} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                                <h5 class="card-title">Marino Beach Colombo</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>Marino Beach Colombo has a restaurant, outdoor swimming pool, a fitness center and bar in Colombo. 
-                                Clean and comfortable rooms entertainment, they have a mall inside hotel with various shops and VR games, 9D cinema and more Food was very tasty. 
-                                Professional staff.
-                                </p>
-                                <a href="" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 2 mins ago</small>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img3} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                                <h5 class="card-title">Jetwing Hotel</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>Jetwing Hotels Limited is a Sri Lankan hotel chain.
-                                 Jetwing was founded in the 1970s by Herbert Cooray when he purchased the Blue Oceanic Hotel in Negombo from its Swedish owner Vingressor and renamed it Jetwing. 
-                                 Cooray founded Jetwing Travels in 1981
-                                </p>
-                                <a href="" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                            </div>
-                        </div>
+
                     </div>
-                    {/* ))} */}
-
-
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img5} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                            <h5 class="card-title">Hotel Himaya</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>Nestled within 10 acres of exquisitely landscaped grounds, Hotel Himalaya is conveniently located 8 km away from the Tribhuban International Airport and only 2 km from the Kathmandu city centre.
-                                 We have always been an ideal haven for business and leisure travelers alike, offering resort ambience with an intimate touch.
-                                </p>
-                                <a href="" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 1 mins ago</small>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img6} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                                <h5 class="card-title">Hilton Hotel</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>Hilton Worldwide Holdings Inc.,
-                                 formerly Hilton Hotels Corporation, is an American multinational hospitality company that manages and franchises a broad portfolio of hotels and resorts. 
-                                 Founded by Conrad Hilton in May 1919, the corporation is now led by Christopher J. 
-                                Nassetta.
-                                </p>
-                                <a href="" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 2 mins ago</small>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                            <img src={img7} class="card-img-top" alt="..."></img>
-                            <div class="card-body">
-                                <h5 class="card-title">Shangrila Hotel</h5>
-                                <p class="card-text" style={{fontSize: "14px"}}>Shangri-La Hotel, Colombo is delighted to welcome you to the enchanting capital of Sri Lanka - a precious jewel in the Indian Ocean,
-                                 with a glittering cultural heritage and a long, proud history. An exciting new dining and social scene has come to life around the hotel's outstanding group of restaurants and bars,
-                                 and the exclusive Horizon Club Lounge is the largest of its kind in Colombo.
-                                </p>
-                                <a href="" className="btn btn-primary" style={{marginLeft: "30%"}}>See Details</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-
-
 
                 </div>
-         </div>
+
+                <br/><br/>
+
+                <div className="row" style={{marginLeft: "30px"}}>
+
+                    {hotels &&
+                    hotels.map((hotel, index) => (
+
+                        <div className="column3">
+                            <div className="card h-100" style={{width: "20rem"}}>
+                                <div className="card-body">
+                                    <img src={img} className="card-img-top" alt="..."></img>
+                                    <h6 className={ "card-title " + (index === currentIndex ? "active" : "")}
+                                        onClick={() => this.setActiveDestination(hotel, index)}
+                                        key={index}
+                                        style={{marginTop: "20px"}}>
+                                        {hotel.hotelName}
+                                    </h6>
+                                    <p >{hotel.description}</p>
+                                    <Link to={"/i/" + hotel.id} type="button" style={{fontWeight: "bold", fontSize: "13px"}} className="btn btn-primary" style={{marginLeft: "25%"}}> More Details </Link>
+
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+
+                <br/><br/>
+
+                <div className="row" style ={{marginLeft: "250px"}}>
+
+                    {"Items per Page: "}
+                    <select
+                        style ={{marginLeft: "50px", marginTop: "-4px"}}
+                        className="select"
+                        onChange={this.handlePageSizeChange}
+                        value={pageSize}>
+                        {this.pageSizes.map((size) => (
+                            <option key={size} value={size}>
+                                {size}
+                            </option>
+                        ))}
+                    </select>
+
+                    <Pagination
+                        className="pagination"
+                        count={count}
+                        page={page}
+                        siblingCount={1}
+                        boundaryCount={1}
+                        variant="outlined"
+                        shape="rounded"
+                        onChange={this.handlePageChange}
+                        style ={{marginLeft: "200px", marginTop: "-11px"}}
+                    />
+                </div>
+
+
+                <br/><br/><br/>
+
+            </div>
         );
     }
 }
-
