@@ -17,7 +17,7 @@ export default class HotelMainPage extends Component {
         this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
         this.retrieveHotels = this.retrieveHotels.bind(this);
         this.refreshList = this.refreshList.bind(this);
-        this.setActiveDestination = this.setActiveDestination.bind(this);
+        this.setActiveHotel = this.setActiveHotel.bind(this);
         this.removeAllHotels = this.removeAllHotels.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
@@ -93,7 +93,7 @@ export default class HotelMainPage extends Component {
         });
     }
 
-    setActiveDestination(hotel, index) {
+    setActiveHotel(hotel, index) {
         this.setState({
             currentHotel: hotel,
             currentIndex: index,
@@ -200,7 +200,7 @@ export default class HotelMainPage extends Component {
                                 <div className="card-body">
                                     <img src={img} className="card-img-top" alt="..."></img>
                                     <h6 className={ "card-title " + (index === currentIndex ? "active" : "")}
-                                        onClick={() => this.setActiveDestination(hotel, index)}
+                                        onClick={() => this.setActiveHotel(hotel, index)}
                                         key={index}
                                         style={{marginTop: "20px"}}>
                                         {hotel.hotelName}
