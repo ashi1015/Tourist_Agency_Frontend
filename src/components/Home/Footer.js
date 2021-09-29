@@ -15,7 +15,7 @@ class FooterComponent extends Component {
                 <footer className = "footer badge bg-dark text-light">
 
                     <ul className="list-inline" style={{marginTop: "10px"}}>
-                        <li className="list-inline-item"><span className="text-muted" style={{marginLeft: "500px"}}>All Rights Reserved 2020 @JavaGuides</span></li>
+                        <li className="list-inline-item"><span className="text-muted" style={{marginLeft: "500px"}}>All Rights Reserved 2020 @TouristAgency</span></li>
                         <li className="list-inline-item">
                             <span style={{marginLeft: "40px"}}>Contact Us
                                 <figcaption style={{marginLeft: "100px"}}> +94 112 222 333 </figcaption>
