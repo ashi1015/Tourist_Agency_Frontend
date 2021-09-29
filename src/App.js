@@ -15,6 +15,8 @@ import HotelCardViewComponent from "./components/Hotels/Hotel_ComponentView";
 import IndividualHotelDetailsComponent from "./components/Individual Hotels/individual_Hotels";
 import HotelMain from './components/Hotels/HotelMainPage';
 import Gallery from './components/Individual Hotels/Gallery'
+import Footer from "./components/Home/Footer";
+
 class App extends Component {
   render() {
     return (
@@ -68,7 +70,7 @@ class App extends Component {
             
           </div>
         </div>
-
+        <Footer/>
       </Router>
     );
   }
