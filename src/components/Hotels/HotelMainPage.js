@@ -11,6 +11,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import img from "../../images/h1.jpg";
 import img2 from "../../images/h5.jpg";
 
+
 export default class HotelMainPage extends Component {
     constructor(props) {
         super(props);
