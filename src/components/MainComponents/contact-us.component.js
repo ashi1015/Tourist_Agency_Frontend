@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import destination1 from '../images/destination1.jpg'
+import destination1 from '../../images/destination1.jpg'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-import addDestination from '../images/addDestination.png'
-import destinationDetails from '../images/destinationDetails.png'
-import generateDestinationReport from '../images/generateDestinationReport.png'
-import updateDestinations from '../images/updateDestinations.png'
+import addDestination from '../../images/addDestination.png'
+import destinationDetails from '../../images/destinationDetails.png'
+import generateDestinationReport from '../../images/generateDestinationReport.png'
+import updateDestinations from '../../images/updateDestinations.png'
 
 export default class ContactUsComponent extends Component {
     constructor(props) {
