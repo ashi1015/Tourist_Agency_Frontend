@@ -17,9 +17,8 @@ export default class AdminDashboard extends Component {
     render() {
 
         return (
-
             <div>
-                <h2 className="adminHeading">Hotel Management</h2>
+                <h2 className="adminHeading">Dashboard</h2>
 
                 <nav >
                     <ol style={{backgroundColor: "white", marginLeft: "-13px"}} className="breadcrumb">
