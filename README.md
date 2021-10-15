@@ -1,15 +1,15 @@
-                                              ### Group ID - 2021S2_REG_WE_21
+ ### Group ID - 2021S2_REG_WE_21
 
 ### Tourist Travel Agency Management System
 
 
 
-### Group Member Details
+                                                                ### Group Member Details
 
-#### 1 - Jayakody J. A. D. K. A.	IT19114040
-#### 2 - Pramodini A.A.D.A	IT19110530
-#### 3 - Wasala W.L.M.K.S	IT19177106
-#### 4 - Arachchige I.D IT19165226
+                                                                 1 - Jayakody J. A. D. K. A.	IT19114040
+                                                                 2 - Pramodini A.A.D.A	IT19110530
+                                                                 3 - Wasala W.L.M.K.S	IT19177106
+                                                                 4 - Arachchige I.D IT19165226
 
 
 ### Project Description
