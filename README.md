@@ -4,8 +4,7 @@
 
 
 
-### Group Details
-### Member Details
+### Group Member Details
 
 #### 1 - Jayakody J. A. D. K. A.	IT19114040
 #### 2 - Pramodini A.A.D.A	IT19110530
@@ -22,7 +21,7 @@ Benefit of using our web application is that Guest users and Registered users bo
 > Database - Atlas Mongo DB
 > ReactJS
 
-## Tools
+### Tools
 > Postman - Test web APIs
 > Git - Collaboration
 > Azure Board - Maintaing Backlog items 
@@ -30,8 +29,8 @@ Benefit of using our web application is that Guest users and Registered users bo
 > SonarQube - Testing Project
 
 
-## How To Get Started With The Project
-## Pre-requisities
+### How To Get Started With The Project
+### Pre-requisities
 Project setup
 In the project directory, you can run:
 
@@ -43,7 +42,7 @@ yarn install
 
 or
 
-## Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 
 ```
 npm start
@@ -51,7 +50,7 @@ npm start
 yarn start
 ```
 
-## Set port
+### Set port
 .env
 ```
 PORT=8081
